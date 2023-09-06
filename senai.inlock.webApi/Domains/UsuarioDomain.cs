@@ -15,6 +15,6 @@ namespace senai.inlock.webApi.Domains
         [Required(ErrorMessage = "O campo senha é obrigatório!")]
         public string? Senha { get; set; }
 
-        public bool Permissao { get; set; }
+        public TipoUsuarioDomain TipoUsuario { get; set; }
     }
 }

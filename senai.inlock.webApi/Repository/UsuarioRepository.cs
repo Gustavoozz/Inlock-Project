@@ -4,10 +4,12 @@ using System.Data.SqlClient;
 
 namespace senai.inlock.webApi.Repository
 {
-
+    /// <summary>
+    /// Método responsável por efetuar ação de Login.
+    /// </summary>
     public class UsuarioRepository : IUsuarioRepository
     {
-        private string StringConexao = "Data Source = NOTE18-S14; Initial Catalog = Filmes_Tarde; User Id = sa; Pwd = Senai@134";
+        private string StringConexao = "Data Source = NOTE18-S14; Initial Catalog = inlock_games_tarde; User Id = sa; Pwd = Senai@134";
 
         public UsuarioDomain Logar(string Email, string Senha)
         {
@@ -33,11 +35,12 @@ namespace senai.inlock.webApi.Repository
                         {
                             IdUsuario = Convert.ToInt32(rdr["IdUsuario"]),
 
+                            IdTipoUsuario = Convert.ToInt32(rdr["IdTipoUsuario"]),
+
                             Email = rdr["Email"].ToString(),
 
                             Senha = rdr["Senha"].ToString(),
-
-
+                          
                         };
                         return usuarioBuscado;
                     }

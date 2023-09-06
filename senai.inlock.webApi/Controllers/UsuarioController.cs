@@ -11,6 +11,8 @@ namespace senai.inlock.webApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
+
     public class UsuarioController : ControllerBase
     {
         /// <summary>
@@ -19,7 +21,7 @@ namespace senai.inlock.webApi.Controllers
         private IUsuarioRepository _usuarioRepository { get; set; }
 
         /// <summary>
-        /// Instância udo objeto -generoRepository para que haja referência aos métodos no repositório.
+        /// Instância udo objeto _usuarioRepository para que haja referência aos métodos no repositório.
         /// </summary>
         public UsuarioController()
         {
@@ -50,7 +52,7 @@ namespace senai.inlock.webApi.Controllers
                     // Formato da claim ( Tipo, valor ).
                     new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.IdUsuario.ToString()),
                     new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Email),
-                    new Claim(ClaimTypes.Role, usuarioBuscado.Permissao.ToString()),
+                    
 
                     // Existe a possibilidade de criar uma claim personalizada.
                     new Claim("Claim Personalziada", "Valor Personalizado")

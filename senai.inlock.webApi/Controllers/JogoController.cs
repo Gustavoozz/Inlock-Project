@@ -8,6 +8,8 @@ namespace senai.inlock.webApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
+
     public class JogoController : ControllerBase
     {
         private IJogoRepository _jogoRepository { get; set; }
@@ -17,6 +19,10 @@ namespace senai.inlock.webApi.Controllers
             _jogoRepository = new JogoRepository();
         }
 
+        /// <summary>
+        /// Listar jogos.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -37,7 +43,11 @@ namespace senai.inlock.webApi.Controllers
 
         }
 
-
+        /// <summary>
+        /// Cadastrar jogos.
+        /// </summary>
+        /// <param name="novoJogo"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post(JogoDomain novoJogo)
         {

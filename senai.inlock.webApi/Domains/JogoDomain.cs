@@ -19,10 +19,13 @@ namespace senai.inlock.webApi.Domains
 
 
         [Required(ErrorMessage = "A data de lançamento do jogo é obrigatória!")]
-        public DateOnly DataLancamento { get; set; }
+        public DateTime DataLancamento { get; set; }
 
 
         [Required(ErrorMessage = "O valor do jogo é obrigatório!")]
-        public SqlMoney Valor{ get; set; }
+        public float Valor{ get; set; }
+
+
+        public EstudioDomain Estudio { get; set; }
     }
 }

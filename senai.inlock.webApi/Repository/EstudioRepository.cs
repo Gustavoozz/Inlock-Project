@@ -6,19 +6,25 @@ namespace senai.inlock.webApi.Repository
 {
     public class EstudioRepository : IEstudioRepository
     {
-        private string StringConexao = "Data Source = NOTE18-S14; Initial Catalog = Filmes_Tarde; User Id = sa; Pwd = Senai@134";
+        private string StringConexao = "Data Source = NOTE18-S14; Initial Catalog = inlock_games_tarde; User Id = sa; Pwd = Senai@134";
+
+        /// <summary>
+        /// Método responsável por cadastrar um novo estúdio.
+        /// </summary>
+        /// <param name="novoEstudio"></param>
         public void Cadastrar(EstudioDomain novoEstudio)
         {
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
                 // Declara a query que será executada.
-                string queryInsert = $"INSERT INTO Estudio(IdEstudio, Nome) VALUES (@IdEstudio, @Nome)";
+                string queryInsert = $"INSERT INTO Estudio VALUES(@Nome)";
 
                 // Declara o SqlCommand passando a query que será executada e a conexão com o BD.
                 using (SqlCommand cmd = new SqlCommand(queryInsert, con))
                 {
-                    cmd.Parameters.AddWithValue("@IdEstudio", novoEstudio.IdEstudio);
+                    
                     cmd.Parameters.AddWithValue("@Nome", novoEstudio.Nome);
+
 
                     // Abre a conexão com o banco de dados.
                     con.Open();
@@ -29,6 +35,10 @@ namespace senai.inlock.webApi.Repository
             }
         }
 
+        /// <summary>
+        /// Método responsável por listar os estúdios já cadastrados.
+        /// </summary>
+        /// <returns></returns>
         public List<EstudioDomain> ListarTodos()
         {
                 //Cria uma lista de gêneros para armazená-los
@@ -38,7 +48,7 @@ namespace senai.inlock.webApi.Repository
                 using (SqlConnection con = new(StringConexao))
                 {
                     //Declara a instrução a ser executada
-                    string querySelectAll = "SELECT Estudio.Nome AS Estudio,Jogo.Nome AS Jogo FROM Estudio LEFT JOIN Jogo ON Estudio.IdEstudio = Jogo.IdEstudio;";
+                    string querySelectAll = "SELECT IdEstudio, Nome FROM Estudio";
 
                     //Abre a conexão com o banco de dados
                     con.Open();
@@ -57,12 +67,10 @@ namespace senai.inlock.webApi.Repository
                         EstudioDomain Estudio = new()
                         {
                             //Atribui à propriedade IdFilme os valores das colunas
-                            IdEstudio = Convert.ToInt32(rdr["IdEstudio"]),
-                           
+                            IdEstudio = Convert.ToInt32(rdr["IdEstudio"]),       
+                            
                             Nome = rdr["Nome"].ToString(),
-
                         };
-
 
                         ListaEstudios.Add(Estudio);
                     };

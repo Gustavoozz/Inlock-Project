@@ -21,6 +21,10 @@ namespace senai.inlock.webApi.Controllers
         }
 
 
+        /// <summary>
+        /// Listar estúdios.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]       
         public IActionResult Get()
         {
@@ -42,7 +46,11 @@ namespace senai.inlock.webApi.Controllers
 
         }
 
-
+        /// <summary>
+        /// Cadastrar um novo estúdio.
+        /// </summary>
+        /// <param name="novoEstudio"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post(EstudioDomain novoEstudio)
         {
