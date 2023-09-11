@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using senai.inlock.webApi.Domains;
 using senai.inlock.webApi.Interfaces;
 using senai.inlock.webApi.Repository;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
@@ -33,7 +35,8 @@ namespace senai.inlock.webApi.Controllers
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost] 
+        
         public IActionResult Post(UsuarioDomain usuario)
         {
             try
